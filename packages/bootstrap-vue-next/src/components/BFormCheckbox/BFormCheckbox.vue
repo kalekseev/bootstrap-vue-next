@@ -52,7 +52,7 @@ const props = withDefaults(
     id?: string
     indeterminate?: Booleanish
     inline?: Booleanish
-    modelValue?: CheckboxValue | CheckboxValue[]
+    modelValue?: CheckboxValue | ReadonlyArray<CheckboxValue>
     name?: string
     plain?: Booleanish
     required?: Booleanish
@@ -87,9 +87,9 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
-  'change': [value: CheckboxValue | CheckboxValue[]]
-  'input': [value: CheckboxValue | CheckboxValue[]]
-  'update:modelValue': [value: CheckboxValue | CheckboxValue[]]
+  'change': [value: CheckboxValue | ReadonlyArray<CheckboxValue>]
+  'input': [value: CheckboxValue | ReadonlyArray<CheckboxValue>]
+  'update:modelValue': [value: CheckboxValue | ReadonlyArray<CheckboxValue>]
 }>()
 
 const slots = defineSlots<{
@@ -124,7 +124,7 @@ const hasDefaultSlot = toRef(() => !isEmptySlot(slots.default))
 
 const localValue = computed({
   get: () => parentData?.modelValue.value ?? modelValue.value,
-  set: (newVal) => {
+  set: (newVal: ReadonlyArray<CheckboxValue> | CheckboxValue | undefined) => {
     if (newVal === undefined) return
     if (parentData !== null && Array.isArray(newVal)) {
       // The type cast isn't perfect. Array.isArray detects CheckboxValue.unknown[],

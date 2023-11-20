@@ -91,7 +91,7 @@ export interface BTableSimpleProps {
   variant?: ColorVariant | null
 }
 
-export interface BTableLiteProps extends BTableSimpleProps {
+export interface BTableLiteProps<T> extends BTableSimpleProps {
   align?: VerticalAlign
   caption?: string
   captionHtml?: string
@@ -99,19 +99,19 @@ export interface BTableLiteProps extends BTableSimpleProps {
   emptyFilteredText?: string
   emptyText?: string
   fieldColumnClass?: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  | ((field: TableFieldObject) => Record<string, any>[])
+  | ((field: TableFieldObject<T>) => Record<string, any>[])
     | string
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | Record<PropertyKey, any>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | any[]
-  fields?: TableField[]
+  fields?: TableField<T>[]
   footClone?: Booleanish
   footRowVariant?: ColorVariant | null
   footVariant?: ColorVariant | null
   headRowVariant?: ColorVariant | null
   headVariant?: ColorVariant | null
-  items?: TableItem[]
+  items?: ReadonlyArray<T>
   labelStacked?: Booleanish
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   modelValue?: any
@@ -123,7 +123,7 @@ export interface BTableLiteProps extends BTableSimpleProps {
   // tbodyTransitionHandlers
   // tbodyTransitionProps
   tbodyTrClass?: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  | ((item: TableItem | null, type: string) => string | Array<any> | null | undefined)
+  | ((item: TableItem<T> | null, type: string) => string | Array<any> | null | undefined)
     | string
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | Record<PropertyKey, any>

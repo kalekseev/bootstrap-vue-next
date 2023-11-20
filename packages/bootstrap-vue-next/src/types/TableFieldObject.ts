@@ -6,7 +6,8 @@ import type {ColorVariant} from './ColorVariant'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TableFieldObjectFormatter<T = any> =
   | string
-  | ((value: unknown, key?: LiteralUnion<keyof T>, item?: T) => string)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  | ((value: any, key?: LiteralUnion<keyof T>, item?: T) => string)
 
 export interface TableFieldObject<T = Record<string, unknown>> {
   key: LiteralUnion<keyof T>
