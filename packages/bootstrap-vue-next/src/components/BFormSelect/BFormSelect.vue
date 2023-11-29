@@ -96,9 +96,12 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
-  'change': [value: unknown]
-  'input': [value: unknown]
-  'update:modelValue': [value: unknown]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  'change': [value: any]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  'input': [value: any]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  'update:modelValue': [value: any]
 }>()
 
 defineSlots<{
